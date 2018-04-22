@@ -1,0 +1,6 @@
+public function index(){
+if(isset($session['connected'])){
+$this->load->view('welcome');
+}else{
+$this->load->view('connected_form');
+}
