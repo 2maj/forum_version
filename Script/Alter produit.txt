@@ -1,0 +1,23 @@
+
+ALTER TABLE openfoodfacts._produit ALTER COLUMN creator SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN product_name SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN brands SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN serving_size SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN states_fr SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN nutrition_grade_fr SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN energy_100g SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN fat_100g SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN saturated_fat_100g SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN trans_fat_100g SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN cholesterol_100g SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN carbohydrates_100g SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN sugars_100g set default null;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN fiber_100g SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN proteins_100g SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN salt_100g SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN sodium_100g SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN vitamin_a_100g SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN vitamin_c_100g SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN calcium_100g SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN iron_100g SET  default  NULL;
+ALTER TABLE openfoodfacts._produit ALTER COLUMN nutritions_core_fr_100g SET  default  NULL;

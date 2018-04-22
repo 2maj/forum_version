@@ -1,0 +1,82 @@
+﻿Sub doublons_et_lignes_vides()
+    
+    choix = InputBox("Avant d'utiliser cet outil, n'oubliez pas d'enregistrer votre fichier !" & Chr(10) & Chr(10) & "Choisissez l'action qui vous intéresse :" & Chr(10) & Chr(10) & "1. Colorer les doublons (colorer la cellule)" & Chr(10) & "2. Colorer les doublons (colorer la ligne entière)" & Chr(10) & "3. Effacer les doublons (en laissant la ligne vide)" & Chr(10) & "4. Supprimer les doublons (ligne entière)" & Chr(10) & "5. Supprimer les lignes vides" & Chr(10) & Chr(10) & "Entrez le n° de l'action et cliquez sur OK :", "Gestion des doublons - Blog-Excel.com")
+    If choix = "" Then Exit Sub
+ 
+    choix2 = ""
+    If choix = 1 Or choix = 2 Or choix = 3 Or choix = 4 Then choix2 = InputBox("Entrez la lettre de la colonne où les doublons doivent être recherchés :", "Gestion des doublons - Blog-Excel.com")
+    If choix = 5 Then choix2 = InputBox("Entrez la lettre de la colonne à prendre en compte (si la cellule de cette colonne est vide, la ligne sera supprimée) :", "Gestion des doublons - Blog-Excel.com")
+    If choix2 = "" Then Exit Sub
+ 
+    Application.ScreenUpdating = False
+    test = Timer
+ 
+    der_ligne = Range(choix2 & "65000").End(xlUp).Row
+ 
+    Dim tab_cells()
+    ReDim tab_cells(der_ligne - 1)
+ 
+    For ligne = 1 To der_ligne
+        tab_cells(ligne - 1) = Range(choix2 & ligne)
+    Next
+ 
+    nb = 0
+    If choix = 4 Or choix = 5 Then compteur = 0
+ 
+    For ligne = 1 To der_ligne
+        contenu = tab_cells(ligne - 1)
+ 
+        If (choix = 1 Or choix = 2) And contenu <> "" Then 'Colorer doublons
+            For i = 1 To der_ligne
+                If contenu = tab_cells(i - 1) And ligne <> i Then 'Si doublon
+                    nb = nb + 1
+                    If choix = 1 Then
+                        Range(choix2 & ligne).Interior.ColorIndex = 3
+                    Else
+                        Range(ligne & ":" & ligne).Interior.ColorIndex = 3
+                    End If
+                    Exit For
+                End If
+            Next
+        End If
+ 
+        If (choix = 3 Or choix = 4) And ligne > 1 And contenu <> "" Then 'Effacer/supprimer doublons
+            For i = 1 To ligne - 1
+                If contenu = tab_cells(i - 1) Then 'Si doublon
+                    nb = nb + 1
+                    If choix = 3 Then
+                        Range(ligne & ":" & ligne).ClearContents
+                    Else
+                        Range(ligne + compteur & ":" & ligne + compteur).Delete
+                        compteur = compteur - 1
+                    End If
+                    Exit For
+                End If
+            Next
+        End If
+ 
+        If choix = 5 And contenu = "" Then 'Lignes vides
+            Range(ligne + compteur & ":" & ligne + compteur).Delete
+            compteur = compteur - 1
+            nb = nb + 1
+        End If
+    Next
+ 
+    res_test = Format(Timer - test, "0" & Application.DecimalSeparator & "000")
+    Application.ScreenUpdating = True
+ 
+    If nb = 0 And choix = 5 Then
+        dd = MsgBox("Aucune ligne vide trouvée ...", 64, "Résultat")
+    ElseIf nb = 0 Then
+        dd = MsgBox("Aucun doublon trouvé dans la colonnne " & UCase(choix2) & " ...", 64, "Résultat")
+    ElseIf choix = 5 Then
+        dd = MsgBox(nb & " lignes supprimées (en " & res_test & " secondes)", 64, "Résultat")
+    ElseIf choix = 4 Then
+        dd = MsgBox(nb & " doublons supprimés (en " & res_test & " secondes)", 64, "Résultat")
+    ElseIf choix = 3 Then
+        dd = MsgBox(nb & " doublons effacés (en " & res_test & " secondes)", 64, "Résultat")
+    Else
+        dd = MsgBox(nb & " doublons passés en rouge (en " & res_test & " secondes)", 64, "Résultat")
+    End If
+ 
+End Sub

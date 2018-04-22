@@ -1,0 +1,2 @@
+ALTER TABLE openfoodfacts._additif ALTER COLUMN additives_n SET DEFAULT NULL;
+ALTER TABLE openfoodfacts._additif ALTER COLUMN additives SET DEFAULT NULL;

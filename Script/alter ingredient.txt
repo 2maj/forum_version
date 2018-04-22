@@ -1,0 +1,2 @@
+ALTER TABLE openfoodfacts._ingredient ALTER COLUMN ingredients_text SET DEFAULT NULL;
+ALTER TABLE openfoodfacts._ingredient ALTER COLUMN ingredients_that_may_be_from_palm_oil_n SET DEFAULT NULL;
